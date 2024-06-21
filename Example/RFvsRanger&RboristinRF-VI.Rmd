@@ -64,12 +64,12 @@ save(mbToys, file = "outputs/mbToys.Rdata")
 ### With variable importance computation
 
 ```{r, eval=FALSE}
-mbToys <- microbenchmark::microbenchmark(
+mbToysImp <- microbenchmark::microbenchmark(
   randomForest::randomForest(y ~ ., toysData, mtry = mtryToys, importance = TRUE),
   randomForest::randomForest(toys$x, toys$y, mtry = mtryToys, importance = TRUE),
   ranger::ranger(y ~ ., toysData, mtry = mtryToys, num.threads = 1, importance = "permutation"),
   times = 25)
-levels(mbToys$expr) <- c("RF formula", "RF", "ranger")
+levels(mbToysImp$expr) <- c("RF formula", "RF", "ranger")
 ```
 
 ```{r}
